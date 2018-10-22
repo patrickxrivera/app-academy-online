@@ -53,10 +53,10 @@ def no_repeat_years(first_yr, last_yr)
     (first_yr..last_yr).select { |yr| not_repeat_year?(yr) }
 end
 
-def not_repeat_year?(year)
-    str_year = year.to_s
-    str_year.chars.uniq.length == str_year.length
-end
+# def not_repeat_year?(year)
+#     str_year = year.to_s
+#     str_year.chars.uniq.length == str_year.length
+# end
 
 # HARD
 
