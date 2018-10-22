@@ -53,10 +53,10 @@ def no_repeat_years(first_yr, last_yr)
     (first_yr..last_yr).select { |yr| not_repeat_year?(yr) }
 end
 
-# def not_repeat_year?(year)
-#     str_year = year.to_s
-#     str_year.chars.uniq.length == str_year.length
-# end
+def not_repeat_year?(year)
+    str_year = year.to_s
+    str_year.chars.uniq.length == str_year.length
+end
 
 # HARD
 
@@ -67,10 +67,10 @@ end
 # weeks, they're "one-week wonders." Suggested strategy: find the songs that
 # appear multiple times in a row and remove them. You may wish to write a helper
 # method no_repeats?
-def one_week_wonders(songs)
+def one_week_wonders(songs) 
 end
 
-def no_repeats?(song_name, songs)
+def no_repeats?(songs, song, idx)
 end
 
 # Define a method that, given a string of words, returns the word that has the
@@ -79,9 +79,22 @@ end
 # wish to write the helper methods c_distance and remove_punctuation.
 
 def for_cs_sake(string)
+    min_distance, result = Float::INFINITY, ''    
+    string.split.each do |word|
+      formatted_word = remove_punctuation(word)
+      curr_distance = c_distance(formatted_word)
+      result = min_distance <= curr_distance ? result : formatted_word
+      min_distance = [min_distance, curr_distance].min
+    end
+    result
 end
 
 def c_distance(word)
+    word.reverse.index('c') || Float::INFINITY
+end
+
+def remove_punctuation(word)
+    word.gsub(/\W/, '')
 end
 
 # Define a method that, given an array of numbers, returns a nested array of
