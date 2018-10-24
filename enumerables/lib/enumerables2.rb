@@ -103,4 +103,5 @@ end
 # [[0, 1]] repeated_number_ranges([1, 2, 3, 3, 4, 4, 4]) => [[2, 3], [4, 6]]
 
 def repeated_number_ranges(arr)
+    
 end
