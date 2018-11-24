@@ -1,0 +1,73 @@
+Started GET "/" for 127.0.0.1 at 2018-11-23 14:49:30 -0800
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/patrickrivera/.rbenv/versions/2.3.7/lib/ruby/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/patrickrivera/.rbenv/versions/2.3.7/lib/ruby/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (3.5ms)
+Completed 200 OK in 209ms (Views: 9.3ms)
+
+
+  [1m[35m (22.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3664083811000030320)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateHouses (20181123224948)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "houses" ("id" bigserial primary key, "address" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181123224948"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-11-23 22:50:32.069243"], ["updated_at", "2018-11-23 22:50:32.069243"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3664083811000030320)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3664083811000030320)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePeople (20181123225140)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.6ms)[0m  [1m[35mCREATE TABLE "people" ("id" bigserial primary key, "name" character varying, "house_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_f670f9aed2"
+FOREIGN KEY ("house_id")
+  REFERENCES "houses" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_people_on_house_id" ON "people"  ("house_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181123225140"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3664083811000030320)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "houses" ("address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["address", "313 S. Aster Trace"], ["created_at", "2018-11-23 22:55:20.869798"], ["updated_at", "2018-11-23 22:55:20.869798"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "people" ("name", "house_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Patrick"], ["house_id", 1], ["created_at", "2018-11-23 22:55:57.984508"], ["updated_at", "2018-11-23 22:55:57.984508"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPerson Load (0.4ms)[0m  [1m[34mSELECT  "people".* FROM "people" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "houses" ("address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["address", "50 beale street"], ["created_at", "2018-11-23 23:06:38.144391"], ["updated_at", "2018-11-23 23:06:38.144391"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "houses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "people" ("name", "house_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Instacart"], ["house_id", 2], ["created_at", "2018-11-23 23:07:17.019426"], ["updated_at", "2018-11-23 23:07:17.019426"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPerson Load (0.4ms)[0m  [1m[34mSELECT  "people".* FROM "people" WHERE "people"."house_id" = $1 LIMIT $2[0m  [["house_id", 2], ["LIMIT", 11]]
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."house_id" = $1[0m  [["house_id", 1]]
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."house_id" = $1[0m  [["house_id", 2]]
+  [1m[36mPerson Load (0.3ms)[0m  [1m[34mSELECT  "people".* FROM "people" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT  "people".* FROM "people" ORDER BY "people"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT  "people".* FROM "people" WHERE "people"."house_id" = $1 LIMIT $2[0m  [["house_id", 1], ["LIMIT", 11]]
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[36mPerson Load (0.3ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."house_id" = $1[0m  [["house_id", 1]]
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."house_id" = $1[0m  [["house_id", 2]]
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
