@@ -266,3 +266,39 @@
   [1m[36mAnswerChoice Load (0.3ms)[0m  [1m[34mSELECT "answer_choices".* FROM "answer_choices" WHERE "answer_choices"."question_id" = $1[0m  [["question_id", 3]]
   [1m[36mResponse Load (0.3ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."answer_choice_id" IN (7, 8, 9)[0m
   [1m[36mAnswerChoice Load (0.7ms)[0m  [1m[34mSELECT answer_choices.text, COUNT(responses.id) AS response_count FROM "answer_choices" LEFT OUTER JOIN "responses" ON "responses"."answer_choice_id" = "answer_choices"."id" WHERE "answer_choices"."question_id" = $1 GROUP BY answer_choices.id[0m  [["question_id", 3]]
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPoll Load (0.7ms)[0m  [1m[34m      SELECT poll.id, poll.title
+      FROM polls
+        INNER JOIN questions
+          ON question.poll_id = poll.id
+        INNER JOIN answer_choices
+          ON answer_choice.id = question.answer_choice_id
+        INNER JOIN responses
+          ON response.answer_choice_id = answer_choice.id
+      WHERE
+        responses.respondent_id = 3
+[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPoll Load (1.0ms)[0m  [1m[34m      SELECT polls.id, polls.title
+      FROM polls
+        INNER JOIN questions
+          ON questions.poll_id = polls.id
+        INNER JOIN answer_choices
+          ON answer_choices.id = questions.answer_choice_id
+        INNER JOIN responses
+          ON responses.answer_choice_id = answer_choices.id
+      WHERE
+        responses.respondent_id = 3
+[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPoll Load (2.8ms)[0m  [1m[34m      SELECT polls.id, polls.title
+      FROM polls
+        INNER JOIN questions
+          ON questions.poll_id = polls.id
+        INNER JOIN answer_choices
+          ON answer_choices.question_id = questions.id
+        INNER JOIN responses
+          ON responses.answer_choice_id = answer_choices.id
+      WHERE
+        responses.respondent_id = 3
+[0m
